@@ -4,7 +4,7 @@ services:
     build:
       context: ./node
     container_name: app
-    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s sh -c "npm install && node index.js"
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s sh -c "npm install && npm start"
     networks:
       - noginx-network
     volumes:
@@ -15,7 +15,9 @@ services:
       - db
 
   db:
-    image: mysql:8.0.33
+    # image: mysql:8.0.33
+    build:
+      context: ./data
     command: --innodb-use-native-aio=0
     container_name: db
     restart: always

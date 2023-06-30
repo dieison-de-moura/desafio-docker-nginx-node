@@ -1,12 +1,5 @@
 const mysql = require('mysql2');
-
-// Configuração do banco de dados
-const config = {
-    host: 'db',
-    user: 'root',
-    password: 'root',
-    database: 'nodedb'
-};
+const { config } = require('./config');
 
 async function query(sql) {
     const connection = mysql.createConnection(config);
